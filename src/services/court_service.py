@@ -11,16 +11,6 @@ time_slot_type_element = 'free'
 squash_court_number_title = 'title'
 
 
-def remove_unavailable_second_slot(courts_for_slot_one, courts_for_slot_two):
-    free_courts = []
-    for courts_in_one in courts_for_slot_one.items():
-        for courts_in_two in courts_for_slot_two.items():
-            if courts_in_one[0] == courts_in_two[0]:
-                free_courts.append(courts_in_one[0])
-
-    return free_courts
-
-
 def map_free_squash_courts(free_time_slots, input_time):
     squash_courts = {}
 
@@ -47,6 +37,6 @@ def find_all_open_courts(driver: WebDriver, first_time_slot: str, second_time_sl
     courts_for_slot_one = map_free_squash_courts(first_time_slots, first_time_slot)
     courts_for_slot_two = map_free_squash_courts(second_time_slots, second_time_slot)
 
-    squash_courts = remove_unavailable_second_slot(courts_for_slot_one, courts_for_slot_two)
+    squash_courts = dict(zip(courts_for_slot_one, courts_for_slot_two))
 
-    return squash_courts
+    return list(squash_courts.keys())
