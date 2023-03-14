@@ -35,3 +35,6 @@ if driver.find_element(By.ID, 'login-form-container') is not None:
 
             second_slot = time_slot_util.determine_second_slot(first_slot=FIRST_SLOT)
             free_squash_courts = court_service.find_all_open_courts(driver, FIRST_SLOT, second_slot)
+
+            if free_squash_courts.__sizeof__() > 0:
+                print(f'Available courts {free_squash_courts}')
