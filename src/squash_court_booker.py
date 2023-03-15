@@ -33,15 +33,10 @@ if driver.find_element(By.ID, 'login-form-container') is not None:
         if BOOKING_DATE in booking_system_date:
             print(f'Calendar set to day: {booking_system_date}')
             logging.info(f'Calendar set to day: {booking_system_date}')
-
             slot_end_time = time_slot_util.add_one_hour_to_time(first_slot=FIRST_SLOT, minutes_to_add=SLOT_TIME_LIMIT)
-
             free_squash_courts = court_service.find_all_open_courts(driver, FIRST_SLOT)
-
             if free_squash_courts.__sizeof__() > 0:
                 booking_information_service.book_free_squash_court(driver=driver, free_squash_courts=free_squash_courts,
                                                                    end_time=slot_end_time)
             else:
                 print("No free courts")
-
-            driver.quit()

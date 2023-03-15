@@ -40,15 +40,18 @@ def book_free_squash_court(driver: WebDriver, free_squash_courts: dict, end_time
             driver.find_element(By.CSS_SELECTOR, '[onclick*="return hideLightbox(), false"]').click()
             continue
         else:
+            player_name = SECOND_PLAYER_FIRST_NAME + " " + SECOND_PLAYER_LAST_NAME
             end_time_drop_down_select = Select(form.find_element(By.NAME, end_time_drop_down_name))
             end_time_drop_down_select.select_by_visible_text(end_time)
 
             search_box = form.find_element(By.CLASS_NAME, 'ms-search')
             search_box.send_keys(SECOND_PLAYER_FIRST_NAME)
+            search_box_select = Select(driver.find_element(By.NAME, 'players[2]'))
+            search_box_select.select_by_visible_text(player_name)
 
-            driver.implicitly_wait(10)
+            if search_box_select.first_selected_option.get_attribute('text') == player_name:
+                print(search_box_select.first_selected_option.get_attribute('text'))
 
-            search_box_select = Select(form.find_element(By.NAME, 'players[2]'))
-
-            selected_player = search_box_select.select_by_visible_text('Stehan Du Ploy')
-            print(selected_player.get_attribute('value'))
+            else:
+                print("Could not find player")
+            break
