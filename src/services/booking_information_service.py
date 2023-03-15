@@ -1,6 +1,6 @@
 import os
 
-from selenium.common import NoSuchElementException
+from selenium.common import NoSuchElementException, UnexpectedAlertPresentException
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -40,18 +40,23 @@ def book_free_squash_court(driver: WebDriver, free_squash_courts: dict, end_time
             driver.find_element(By.CSS_SELECTOR, '[onclick*="return hideLightbox(), false"]').click()
             continue
         else:
-            player_name = SECOND_PLAYER_FIRST_NAME + " " + SECOND_PLAYER_LAST_NAME
-            end_time_drop_down_select = Select(form.find_element(By.NAME, end_time_drop_down_name))
-            end_time_drop_down_select.select_by_visible_text(end_time)
+            try:
+                player_name = SECOND_PLAYER_FIRST_NAME + " " + SECOND_PLAYER_LAST_NAME
+                end_time_drop_down_select = Select(form.find_element(By.NAME, end_time_drop_down_name))
+                end_time_drop_down_select.select_by_visible_text(end_time)
 
-            search_box = form.find_element(By.CLASS_NAME, 'ms-search')
-            search_box.send_keys(SECOND_PLAYER_FIRST_NAME)
-            search_box_select = Select(driver.find_element(By.NAME, 'players[2]'))
-            search_box_select.select_by_visible_text(player_name)
+                search_box = form.find_element(By.CLASS_NAME, 'ms-search')
+                search_box.send_keys(SECOND_PLAYER_FIRST_NAME)
+                search_box_select = Select(driver.find_element(By.NAME, 'players[2]'))
+                search_box_select.select_by_visible_text(player_name)
 
-            if search_box_select.first_selected_option.get_attribute('text') == player_name:
-                print(search_box_select.first_selected_option.get_attribute('text'))
+                if search_box_select.first_selected_option.get_attribute('text') == player_name:
+                    print("Correct Player Selected")
+                    form.find_element(By.ID, '__make_submit').click()
+                    driver.save_screenshot('booking_confirmation.png')
+                    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, '__make_submit2'))).click()
+                    return free_squash_courts[key]
 
-            else:
-                print("Could not find player")
+            except UnexpectedAlertPresentException:
+                print(driver.switch_to.alert.text)
             break
