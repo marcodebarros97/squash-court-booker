@@ -18,25 +18,18 @@ def map_free_squash_courts(free_time_slots, input_time):
         free_squash_courts = time_slot.find_elements(By.CSS_SELECTOR, '[type="free"]')
         for squash_court in free_squash_courts:
             squash_court_number = squash_court.get_attribute("title")
-            squash_courts[squash_court_number] = input_time
+            squash_courts[squash_court_number] = squash_court
 
     return squash_courts
 
 
-def find_all_open_courts(driver: WebDriver, first_time_slot: str, second_time_slot: str):
+def find_all_open_courts(driver: WebDriver, first_time_slot: str):
     table_id = driver.find_element(By.ID, 'tbl_matrix')
     table_body = table_id.find_element(By.TAG_NAME, 'tbody')
     table_rows = table_body.find_elements(By.TAG_NAME, "tr")
     first_time_slots = []
-    second_time_slots = []
 
     for row in table_rows:
         first_time_slots.extend(row.find_elements(By.CSS_SELECTOR, f'[data-time="{first_time_slot}"]'))
-        second_time_slots.extend(row.find_elements(By.CSS_SELECTOR, f'[data-time="{second_time_slot}"]'))
 
-    courts_for_slot_one = map_free_squash_courts(first_time_slots, first_time_slot)
-    courts_for_slot_two = map_free_squash_courts(second_time_slots, second_time_slot)
-
-    squash_courts = dict(zip(courts_for_slot_one, courts_for_slot_two))
-
-    return list(squash_courts.keys())
+    return map_free_squash_courts(first_time_slots, first_time_slot)
