@@ -26,7 +26,7 @@ variables:
 - name: SECOND_PLAYER_LAST_NAME 
   value: Du Plooy
 - name: BOOKING_DATE
-  value: ${{ parameters.BOOKING_DATE }}
+  value: ${{ parameters.BOOKING_DATE_OVERRIDE }}
 
 stages:
 - stage: Key_Vault
