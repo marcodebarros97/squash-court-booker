@@ -11,8 +11,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-- group: squash-court-booker-variables
-- group: squash-court-booker-secrets
+- group: squash_court_booker_variables
+- group: squash_court_booker_secrets
 - name: FIRST_SLOT
   value: '18:00'
 - name: SECOND_SLOT
