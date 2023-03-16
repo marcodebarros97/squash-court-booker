@@ -45,7 +45,7 @@ stages:
     steps:
     - script: |
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-        export PASSWORD=$(echo PASSWORD)
+        export PASSWORD=$(echo $(PASSWORD))
         export BASE_URL=$(echo ${{ variables.squash_court_booker_variables.BASE_URL }})
         export FIRST_SLOT=$(echo $(FIRST_SLOT))
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
