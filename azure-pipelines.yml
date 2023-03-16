@@ -4,7 +4,7 @@ trigger:
 parameters:
 - name: BOOKING_DATE_OVERRIDE
   type: string
-  default: ''
+  defaultValue: ''
 
 pool:
   vmImage: ubuntu-latest
