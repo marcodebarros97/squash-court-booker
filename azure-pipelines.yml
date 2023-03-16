@@ -9,11 +9,42 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
+variables:
+- group: squash-court-booker-variables
+- group: squash-court-booker-secrets
+- name: FIRST_SLOT
+  value: '18:00'
+- name: SECOND_SLOT
+  value: '19:00'
+- name: SLOT_TIME_LIMIT
+  value: '60'
+- name: USERNAME_FIRST_BOOKING
+  value: MarcoDeBarros1997
+- name: SECOND_PLAYER_FIRST_NAME 
+  value: 'Stehan'
+- name: SECOND_PLAYER_LAST_NAME 
+  value: 'Du Plooy'
 
-- script: |
-    ls -ltra
-    pip install -r requirements.txt
-    export PYTHONPATH="$PWD"
-    python src/squash_court_booker.py
-  displayName: 'Run court booking script'
+stages:
+- stage: First Booking
+  - job: Set Working Directory
+    steps:
+    - script: |
+      ls -ltra
+      export PYTHONPATH="$PWD"
+    displayName: 'Run court booking script'
+
+  - job: Run Python Script
+    steps:
+    - task: PythonScript@0
+      inputs:
+        scriptSource: 'inline'
+        script: |
+          export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
+          export PASSWORD=$(echo $(squash-court-booker-secrets.PASSWORD))
+          export BASE_URL=$(echo $(squash-court-booker-variables.BASE_URL))
+          export FIRST_SLOT=$(echo $(USERNAME_FIRST_BOOKING))
+          export SLOT_TIME_LIMIT=$(echo $(USERNAME_FIRST_BOOKING))
+          export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
+          export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
+          python src/squash_court_booker.py
