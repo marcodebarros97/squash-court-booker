@@ -4,6 +4,7 @@ trigger:
 parameters:
 - name: BOOKING_DATE  
   type: string
+  displayName: 'Default: One week from today (YYYY-MM-DD)'
   default: $[formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd')]
 
 pool:
