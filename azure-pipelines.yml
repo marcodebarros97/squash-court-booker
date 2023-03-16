@@ -5,7 +5,7 @@ parameters:
 - name: BOOKING_DATE_OVERRIDE
   type: string
   displayName: 'Default: One week from today (YYYY-MM-DD)'
-  default: $(python -c "from datetime import datetime, timedelta; print((datetime.utcnow() + timedelta(days=7)).strftime('%Y-%m-%d'))")
+  default: $[formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd')]
 
 pool:
   vmImage: ubuntu-latest
