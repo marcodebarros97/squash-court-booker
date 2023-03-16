@@ -37,11 +37,7 @@ stages:
         KeyVaultName: 'account-secrets'
         SecretsFilter: '*'
         RunAsPreJob: true
-    - task: CmdLine@2
-      inputs:
-        script: 'echo $(KampongPasswordMarco) > secret.txt'
     
-
 - stage: First_Booking
   jobs:
   - job: Run_Python_Script
@@ -56,7 +52,7 @@ stages:
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo ${{ variables.BOOKING_DATE }})
         ls -ltra
-        echo ${{ variables.squash_court_booker_secrets.KampongPasswordMarco }}
+        echo $(KampongPasswordMarco)
         echo $USERNAME
     - script: |
         python -m pip install --upgrade pip
