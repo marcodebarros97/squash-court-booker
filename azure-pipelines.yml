@@ -35,7 +35,6 @@ stages:
       inputs:
         azureSubscription: 'MarcoPersonalSubscription (24fae4d7-25bc-438f-aad0-b45df9237871)'
         KeyVaultName: 'account-secrets'
-        SecretsFilter: '*'
         RunAsPreJob: true
     
 - stage: First_Booking
