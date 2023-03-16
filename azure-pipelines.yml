@@ -2,7 +2,7 @@ trigger:
 - main
 
 parameters:
-- name: BOOKING_DATE_OVERRIDE 
+- name: BOOKING_DATE  
   type: string
   displayName: 'Default: One week from today (YYYY-MM-DD)'
   default: $[formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd')]
@@ -25,8 +25,6 @@ variables:
   value: Stehan
 - name: SECOND_PLAYER_LAST_NAME 
   value: Du Plooy
-- name: BOOKING_DATE
-  value: ${{ parameters.BOOKING_DATE_OVERRIDE }}
 
 stages:
 - stage: Key_Vault
@@ -52,7 +50,7 @@ stages:
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=$(echo $(BOOKING_DATE))
+        export BOOKING_DATE=$(echo ${{ parameters.BOOKING_DATE_OVERRIDE }})
     - script: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
