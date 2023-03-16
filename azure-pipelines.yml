@@ -40,8 +40,7 @@ stages:
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo $(BOOKING_DATE))
-        cd src/
-        export PYTHONPATH=$PWD 
+        
       displayName: 'Set Environment Variables'
 
 - stage: First_Booking
@@ -52,5 +51,5 @@ stages:
       inputs:
         scriptSource: 'inline'
         script: |
-          python src/squash_court_booker.py
+          ls -ltra
       displayName: 'Execute Python Script'
