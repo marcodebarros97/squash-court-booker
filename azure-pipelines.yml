@@ -1,11 +1,10 @@
-trigger:
-- main
-
 parameters:
 - name: BOOKING_DATE_OVERRIDE
-  displayName: 'Booking Date Override'
   type: string
-  default: ${{ formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd') }}
+  default: $[formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd')]
+
+trigger:
+- main
 
 pool:
   vmImage: ubuntu-latest
@@ -26,7 +25,7 @@ variables:
 - name: SECOND_PLAYER_LAST_NAME 
   value: 'Du Plooy'
 - name: BOOKING_DATE
-  value: ${{ parameters.BOOKING_DATE_OVERRIDE }} # Use custom variable if provided, otherwise use default
+  value: $[parameters.BOOKING_DATE_OVERRIDE] # Use custom variable if provided, otherwise use default
 
 stages:
 - stage: Setup Environment
@@ -41,7 +40,7 @@ stages:
         export SLOT_TIME_LIMIT=$(echo $(USERNAME_FIRST_BOOKING))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=${{ variables.BOOKING_DATE }}
+        export BOOKING_DATE=$[variables.BOOKING_DATE]
       displayName: 'Set Environment Variables'
 
 - stage: First Booking
