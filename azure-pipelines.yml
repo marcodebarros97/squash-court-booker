@@ -15,5 +15,7 @@ steps:
     ls -ltra
     pip install -r requirements.txt
     cd src/
-    python squash_court_booker.py
+    export PYTHONPATH="$PWD:src/"
+    ls -ltra
+    # python squash_court_booker.py
   displayName: 'Run court booking script'
