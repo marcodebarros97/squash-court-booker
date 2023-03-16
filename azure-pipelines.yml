@@ -47,12 +47,12 @@ stages:
         set -x
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
         export PASSWORD=$(echo $(PASSWORD))
-        export BASE_URL=$(echo ${{ variables.BASE_URL }})
+        export BASE_URL=$(echo $(BASE_URL)))
         export FIRST_SLOT=$(echo $(FIRST_SLOT))
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=$(echo ${{ variables.BOOKING_DATE }})
+        export BOOKING_DATE=$(echo $(BOOKING_DATE))
         ls -ltra
         echo $PASSWORD
         echo $USERNAME
