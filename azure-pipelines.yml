@@ -1,10 +1,10 @@
+trigger:
+- main
+
 parameters:
 - name: BOOKING_DATE_OVERRIDE
   type: string
   default: $[formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd')]
-
-trigger:
-- main
 
 pool:
   vmImage: ubuntu-latest
