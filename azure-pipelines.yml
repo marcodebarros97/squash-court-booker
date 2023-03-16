@@ -44,6 +44,7 @@ stages:
   - job: Run_Python_Script
     steps:
     - script: |
+        set -x
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
         export PASSWORD=$(echo $(PASSWORD))
         export BASE_URL=$(echo ${{ variables.squash_court_booker_variables.BASE_URL }})
