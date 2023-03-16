@@ -2,7 +2,7 @@ trigger:
 - main
 
 parameters:
-- name: BOOKING_DATE  
+- name: BOOKING_DATE_OVERRIDE
   type: string
   displayName: 'Default: One week from today (YYYY-MM-DD)'
   default: $(python -c "from datetime import datetime, timedelta; print((datetime.utcnow() + timedelta(days=7)).strftime('%Y-%m-%d'))")
@@ -25,6 +25,8 @@ variables:
   value: Stehan
 - name: SECOND_PLAYER_LAST_NAME
   value: Du Plooy
+- name: BOOKING_DATE
+  value: ${{ parameters.BOOKING_DATE_OVERRIDE }}
 
 stages:
 - stage: Key_Vault
@@ -55,7 +57,7 @@ stages:
           --SLOT_TIME_LIMIT $(SLOT_TIME_LIMIT)
           --SECOND_PLAYER_FIRST_NAME $(SECOND_PLAYER_FIRST_NAME)
           --SECOND_PLAYER_LAST_NAME $(SECOND_PLAYER_LAST_NAME)
-          --BOOKING_DATE ${{ parameters.BOOKING_DATE }}
+          --BOOKING_DATE $(BOOKING_DATE)
         scriptSource: 'filePath'
         scriptPath: 'src/squash_court_booker.py'
       displayName: 'Execute Python Script'
