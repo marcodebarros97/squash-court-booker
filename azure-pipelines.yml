@@ -1,7 +1,7 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+parameters:
+- name: BOOKING_DATE_OVERRIDE
+  type: string
+  default: ${{ formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd') }}
 
 trigger:
 - main
@@ -24,27 +24,32 @@ variables:
   value: 'Stehan'
 - name: SECOND_PLAYER_LAST_NAME 
   value: 'Du Plooy'
+- name: BOOKING_DATE
+  value: ${{ parameters.BOOKING_DATE_OVERRIDE }} # Use custom variable if provided, otherwise use default
 
 stages:
-- stage: First Booking
-  - job: Set Working Directory
+- stage: Setup Environment
+  jobs:
+  - job: Set Environment Variables
     steps:
     - script: |
-      ls -ltra
-      export PYTHONPATH="$PWD"
-    displayName: 'Run court booking script'
+        export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
+        export PASSWORD=$(echo $(squash-court-booker-secrets.PASSWORD))
+        export BASE_URL=$(echo $(squash-court-booker-variables.BASE_URL))
+        export FIRST_SLOT=$(echo $(USERNAME_FIRST_BOOKING))
+        export SLOT_TIME_LIMIT=$(echo $(USERNAME_FIRST_BOOKING))
+        export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
+        export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
+        export BOOKING_DATE=${{ variables.BOOKING_DATE }}
+      displayName: 'Set Environment Variables'
 
+- stage: First Booking
+  jobs:
   - job: Run Python Script
     steps:
     - task: PythonScript@0
       inputs:
         scriptSource: 'inline'
         script: |
-          export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-          export PASSWORD=$(echo $(squash-court-booker-secrets.PASSWORD))
-          export BASE_URL=$(echo $(squash-court-booker-variables.BASE_URL))
-          export FIRST_SLOT=$(echo $(USERNAME_FIRST_BOOKING))
-          export SLOT_TIME_LIMIT=$(echo $(USERNAME_FIRST_BOOKING))
-          export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
-          export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
           python src/squash_court_booker.py
+      displayName: 'Execute Python Script'
