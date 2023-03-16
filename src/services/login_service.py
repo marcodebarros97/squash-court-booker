@@ -25,9 +25,4 @@ def perform_login(driver: WebDriver):
         password_input_field.send_keys(PASSWORD)
         driver.find_element(By.XPATH, "//div[@class='form-submit3']//button[@class='button3 fw']").click()
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, 'calendar_date_title')))
-        if driver.find_element(By.ID, 'calendar_date_title'):
-            print('Login to booking system was successful')
-            logging.info('Login to booking system was successful')
-            return True
-        else:
-            return False
+        print('Login to booking system was successful')
