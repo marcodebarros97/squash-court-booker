@@ -21,9 +21,9 @@ variables:
   value: 60
 - name: USERNAME_FIRST_BOOKING
   value: MarcoDeBarros1997
-- name: SECOND_PLAYER_FIRST_NAME 
+- name: SECOND_PLAYER_FIRST_NAME
   value: Stehan
-- name: SECOND_PLAYER_LAST_NAME 
+- name: SECOND_PLAYER_LAST_NAME
   value: Du Plooy
 
 stages:
