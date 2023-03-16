@@ -13,7 +13,7 @@ steps:
 
 - script: |
     ls -ltra
-    pip install requirements.txt 
+    pip install -r requirements.txt
     cd src/
     python squash_court_booker.py
   displayName: 'Run court booking script'
