@@ -6,8 +6,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-from src.services import login_service, court_service, booking_information_service
-from src.utils import time_slot_util
+from services import login_service, court_service, booking_information_service
+from utils import time_slot_util
 
 BASE_URL = str(os.getenv('BASE_URL'))
 BOOKING_DATE = str(os.getenv('BOOKING_DATE'))
