@@ -33,15 +33,15 @@ stages:
     steps:
     - script: |
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-        export PASSWORD=$(echo ${{ variables.KampongPasswordMarco }})
-        export BASE_URL=$(echo ${{ variables.BASE_URL }})
+        export PASSWORD=$(echo ${{ variables.squash-court-booker-secrets.KampongPasswordMarco }})
+        export BASE_URL=$(echo ${{ variables.squash-court-booker-variables.BASE_URL }})
         export FIRST_SLOT=$(echo $(FIRST_SLOT))
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo ${{ variables.BOOKING_DATE }})
         ls -ltra
-        echo ${{ variables.KampongPasswordMarco }}
+        echo ${{ variables.squash-court-booker-secrets.KampongPasswordMarco }}
         echo $USERNAME
     - script: |
         python -m pip install --upgrade pip
