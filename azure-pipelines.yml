@@ -35,11 +35,11 @@ stages:
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
         export PASSWORD=$(echo $(squash-court-booker-secrets.PASSWORD))
         export BASE_URL=$(echo $(squash-court-booker-variables.BASE_URL))
-        export FIRST_SLOT=$(echo $(USERNAME_FIRST_BOOKING))
-        export SLOT_TIME_LIMIT=$(echo $(USERNAME_FIRST_BOOKING))
+        export FIRST_SLOT=$(echo $(FIRST_SLOT))
+        export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=$[variables.BOOKING_DATE]
+        export BOOKING_DATE=$(echo $(BOOKING_DATE))
       displayName: 'Set Environment Variables'
 
 - stage: First_Booking
