@@ -12,5 +12,8 @@ pool:
 steps:
 
 - script: |
-    ls -ltra 
-  displayName: 'Run a multi-line script'
+    ls -ltra
+    pip install requirements.txt 
+    cd src/
+    python squash_court_booker.py
+  displayName: 'Run court booking script'
