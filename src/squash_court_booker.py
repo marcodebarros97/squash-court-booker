@@ -2,6 +2,7 @@ import os
 import logging
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
@@ -19,8 +20,12 @@ SLOT_TIME_LIMIT = int(os.getenv('SLOT_TIME_LIMIT'))
 
 # Take a screenshot of booking and email to me but squash system will also email it
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver.get(BASE_URL)
+
 if driver.find_element(By.ID, 'login-form-container') is not None:
     print('Correct Page Retrieved, Performing Login')
     logging.info('Correct Page Retrieved, Performing Login')
