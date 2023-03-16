@@ -14,19 +14,19 @@ variables:
 - group: squash_court_booker_variables
 - group: squash_court_booker_secrets
 - name: FIRST_SLOT
-  value: '18:00'
+  value: 18:00
 - name: SECOND_SLOT
-  value: '19:00'
+  value: 19:00
 - name: SLOT_TIME_LIMIT
-  value: '60'
+  value: 60
 - name: USERNAME_FIRST_BOOKING
   value: MarcoDeBarros1997
 - name: SECOND_PLAYER_FIRST_NAME 
-  value: 'Stehan'
+  value: Stehan
 - name: SECOND_PLAYER_LAST_NAME 
-  value: 'Du Plooy'
+  value: Du Plooy
 - name: PASSWORD
-  value: 'gRr2YLRmckfMWzqvWJ6QW-EUU'
+  value: gRr2YLRmckfMWzqvWJ6QW-EUU
 
 stages:
 - stage: Key_Vault
