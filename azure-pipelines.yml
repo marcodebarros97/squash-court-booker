@@ -40,6 +40,7 @@ stages:
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo $(BOOKING_DATE))
+        cd src/
       displayName: 'Set Environment Variables'
 
 - stage: First_Booking
