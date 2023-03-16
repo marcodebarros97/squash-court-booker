@@ -5,7 +5,7 @@ parameters:
 - name: BOOKING_DATE_OVERRIDE 
   type: string
   displayName: 'Default: One week from today (YYYY-MM-DD)'
-  default: $[formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd')]
+  default: $[format('{0:yyyy-MM-dd}', addDays(utcNow(), 7))]
 
 pool:
   vmImage: ubuntu-latest
