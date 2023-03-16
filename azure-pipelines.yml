@@ -25,8 +25,6 @@ variables:
   value: Stehan
 - name: SECOND_PLAYER_LAST_NAME 
   value: Du Plooy
-- name: PASSWORD
-  value: gRr2YLRmckfMWzqvWJ6QW-EUU
 
 stages:
 - stage: Key_Vault
@@ -46,16 +44,13 @@ stages:
     - script: |
         set -x
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-        export PASSWORD=$(echo $(PASSWORD))
+        export PASSWORD=$(echo $(KampongPasswordMarco))
         export BASE_URL=$(echo $(BASE_URL))
         export FIRST_SLOT=$(echo $(FIRST_SLOT))
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=$(echo $(BOOKING_DATE))
-        ls -ltra
-        echo $PASSWORD
-        echo $USERNAME
+        export BOOKING_DATE=$(echo "${{ parameters.BOOKING_DATE }}")
     - script: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
