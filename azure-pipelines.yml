@@ -25,6 +25,8 @@ variables:
   value: 'Stehan'
 - name: SECOND_PLAYER_LAST_NAME 
   value: 'Du Plooy'
+- name: PASSWORD
+  value: 'gRr2YLRmckfMWzqvWJ6QW-EUU'
 
 stages:
 - stage: Key_Vault
@@ -43,7 +45,7 @@ stages:
     steps:
     - script: |
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-        export PASSWORD=$(echo 'gRr2YLRmckfMWzqvWJ6QW-EUU')
+        export PASSWORD=$(echo PASSWORD)
         export BASE_URL=$(echo ${{ variables.squash_court_booker_variables.BASE_URL }})
         export FIRST_SLOT=$(echo $(FIRST_SLOT))
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
@@ -51,7 +53,7 @@ stages:
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo ${{ variables.BOOKING_DATE }})
         ls -ltra
-        echo "PASSWORD is set to: \$PASSWORD"
+        echo $PASSWORD
         echo $USERNAME
     - script: |
         python -m pip install --upgrade pip
