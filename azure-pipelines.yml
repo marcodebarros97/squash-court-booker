@@ -2,9 +2,9 @@ trigger:
 - main
 
 parameters:
-- name: BOOKING_DATE_OVERRIDE
+- name: BOOKING_DATE  
   type: string
-  default: ''
+  default: $[formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd')]
 
 pool:
   vmImage: ubuntu-latest
@@ -24,8 +24,6 @@ variables:
   value: 'Stehan'
 - name: SECOND_PLAYER_LAST_NAME 
   value: 'Du Plooy'
-- name: BOOKING_DATE
-  value: $[coalesce(parameters.BOOKING_DATE_OVERRIDE, formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd'))] # Use custom variable if provided, otherwise use default
 
 stages:
 - stage: Setup Environment
