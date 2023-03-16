@@ -43,7 +43,7 @@ stages:
     steps:
     - script: |
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-        export PASSWORD=$(echo $(KampongPasswordMarco))
+        export PASSWORD=$(echo 'gRr2YLRmckfMWzqvWJ6QW-EUU')
         export BASE_URL=$(echo ${{ variables.squash_court_booker_variables.BASE_URL }})
         export FIRST_SLOT=$(echo $(FIRST_SLOT))
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
