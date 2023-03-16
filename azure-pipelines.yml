@@ -41,6 +41,7 @@ stages:
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo $(BOOKING_DATE))
         cd src/
+        export PYTHONPATH=$PWD 
       displayName: 'Set Environment Variables'
 
 - stage: First_Booking
