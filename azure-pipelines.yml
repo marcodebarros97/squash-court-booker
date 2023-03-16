@@ -41,8 +41,8 @@ stages:
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo ${{ variables.BOOKING_DATE }})
         ls -ltra
-        echo PASSWORD
-        echo USERNAME
+        echo $PASSWORD
+        echo $USERNAME
     - script: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
