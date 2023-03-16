@@ -49,13 +49,13 @@ stages:
       inputs:
         arguments: |
           --USERNAME $(USERNAME)
-          --PASSWORD $(PASSWORD)
+          --PASSWORD $(KampongPasswordMarco)
           --BASE_URL $(BASE_URL)
           --FIRST_SLOT $(FIRST_SLOT)
           --SLOT_TIME_LIMIT $(SLOT_TIME_LIMIT)
           --SECOND_PLAYER_FIRST_NAME $(SECOND_PLAYER_FIRST_NAME)
           --SECOND_PLAYER_LAST_NAME $(SECOND_PLAYER_LAST_NAME)
-          --BOOKING_DATE $(BOOKING_DATE)
+          --BOOKING_DATE ${{ parameters.BOOKING_DATE }}
         scriptSource: 'filePath'
         scriptPath: 'src/squash_court_booker.py'
       displayName: 'Execute Python Script'
