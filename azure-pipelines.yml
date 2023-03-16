@@ -37,6 +37,9 @@ stages:
         KeyVaultName: 'account-secrets'
         SecretsFilter: '*'
         RunAsPreJob: true
+    - task: CmdLine@2
+      inputs:
+        script: 'echo $(KampongPasswordMarco) > secret.txt'
     
 
 - stage: First_Booking
