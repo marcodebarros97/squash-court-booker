@@ -25,7 +25,7 @@ variables:
 - name: SECOND_PLAYER_LAST_NAME 
   value: 'Du Plooy'
 - name: BOOKING_DATE
-  value: $[if(empty(parameters.BOOKING_DATE_OVERRIDE), formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd'), parameters.BOOKING_DATE_OVERRIDE))] # Use custom variable if provided, otherwise use default
+  value: $[coalesce(parameters.BOOKING_DATE_OVERRIDE, formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd'))] # Use custom variable if provided, otherwise use default
 
 stages:
 - stage: Setup Environment
