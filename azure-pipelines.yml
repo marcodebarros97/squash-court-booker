@@ -2,14 +2,14 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
-
 parameters:
 - name: BOOKING_DATE_OVERRIDE
   displayName: 'Booking Date Override'
   type: string
   default: ${{ formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd') }}
+
+pool:
+  vmImage: ubuntu-latest
 
 variables:
 - group: squash-court-booker-variables
