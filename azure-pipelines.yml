@@ -33,14 +33,14 @@ stages:
     steps:
     - script: |
         export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-        export PASSWORD=$(echo $(squash-court-booker-secrets.PASSWORD))
-        export BASE_URL=$(echo $(squash-court-booker-variables.BASE_URL))
+        export PASSWORD=$(echo ${{ variables.PASSWORD }})
+        export BASE_URL=$(echo ${{ variables.BASE_URL }})
         export FIRST_SLOT=$(echo $(FIRST_SLOT))
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=$(echo $(BOOKING_DATE))
-        
+        export BOOKING_DATE=$(echo ${{ variables.BOOKING_DATE }})
+        cd src/
       displayName: 'Set Environment Variables'
 
 - stage: First_Booking
@@ -51,5 +51,6 @@ stages:
       inputs:
         scriptSource: 'inline'
         script: |
-          ls -ltra
+          ls
+          cd src/
       displayName: 'Execute Python Script'
