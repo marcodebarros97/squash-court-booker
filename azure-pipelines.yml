@@ -27,6 +27,18 @@ variables:
   value: 'Du Plooy'
 
 stages:
+- stage: Key_Vault
+  jobs:
+  - job: Key_Vault
+    steps:
+    - task: AzureKeyVault@2
+      inputs:
+        azureSubscription: 'MarcoPersonalSubscription (24fae4d7-25bc-438f-aad0-b45df9237871)'
+        KeyVaultName: 'account-secrets'
+        SecretsFilter: '*'
+        RunAsPreJob: true
+    
+
 - stage: First_Booking
   jobs:
   - job: Run_Python_Script
