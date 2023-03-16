@@ -42,21 +42,20 @@ stages:
   - job: Run_Python_Script
     steps:
     - script: |
-        set -x
-        export USERNAME=$(echo $(USERNAME_FIRST_BOOKING))
-        export PASSWORD=$(echo $(KampongPasswordMarco))
-        export BASE_URL=$(echo $(BASE_URL))
-        export FIRST_SLOT=$(echo $(FIRST_SLOT))
-        export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
-        export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
-        export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=$(echo ${{ parameters.BOOKING_DATE }})
-    - script: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
       displayName: 'Install dependencies'
     - task: PythonScript@0
       inputs:
+        arguments: |
+          --USERNAME $(USERNAME)
+          --PASSWORD $(PASSWORD)
+          --BASE_URL $(BASE_URL)
+          --FIRST_SLOT $(FIRST_SLOT)
+          --SLOT_TIME_LIMIT $(SLOT_TIME_LIMIT)
+          --SECOND_PLAYER_FIRST_NAME $(SECOND_PLAYER_FIRST_NAME)
+          --SECOND_PLAYER_LAST_NAME $(SECOND_PLAYER_LAST_NAME)
+          --BOOKING_DATE $(BOOKING_DATE)
         scriptSource: 'filePath'
         scriptPath: 'src/squash_court_booker.py'
       displayName: 'Execute Python Script'
