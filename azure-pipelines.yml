@@ -27,7 +27,7 @@ variables:
   value: 'Du Plooy'
 
 stages:
-- stage: Setup Environment
+- stage: Setup_Environment
   jobs:
   - job: Set Environment Variables
     steps:
@@ -42,7 +42,7 @@ stages:
         export BOOKING_DATE=$[variables.BOOKING_DATE]
       displayName: 'Set Environment Variables'
 
-- stage: First Booking
+- stage: First_Booking
   jobs:
   - job: Run Python Script
     steps:
