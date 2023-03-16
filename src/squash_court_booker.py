@@ -27,6 +27,7 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 driver.get(BASE_URL)
 
 if driver.find_element(By.ID, 'login-form-container') is not None:
+    print(BOOKING_DATE)
     print('Correct Page Retrieved, Performing Login')
     logging.info('Correct Page Retrieved, Performing Login')
     login_successful = login_service.perform_login(driver)
