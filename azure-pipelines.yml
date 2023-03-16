@@ -1,5 +1,6 @@
 parameters:
 - name: BOOKING_DATE_OVERRIDE
+  displayName: 'Booking Date Override'
   type: string
   default: ${{ formatDate(addDays(utcNow(), 7), 'yyyy-MM-dd') }}
 
