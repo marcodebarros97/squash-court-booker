@@ -50,7 +50,7 @@ stages:
         export SLOT_TIME_LIMIT=$(echo $(SLOT_TIME_LIMIT))
         export SECOND_PLAYER_FIRST_NAME=$(echo $(SECOND_PLAYER_FIRST_NAME))
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
-        export BOOKING_DATE=$(echo ${{ parameters.BOOKING_DATE_OVERRIDE }})
+        export BOOKING_DATE=$(echo ${{ parameters.BOOKING_DATE }})
     - script: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
