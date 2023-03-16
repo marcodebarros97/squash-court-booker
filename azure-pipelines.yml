@@ -49,8 +49,6 @@ stages:
     steps:
     - task: PythonScript@0
       inputs:
-        scriptSource: 'inline'
-        script: |
-          ls
-          cd src/
+        scriptSource: 'filePath'
+        scriptPath: 'squash-court-booker.py'
       displayName: 'Execute Python Script'
