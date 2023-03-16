@@ -47,6 +47,8 @@ stages:
   jobs:
   - job: Run_Python_Script
     steps:
+    - script: |
+        ls -ltra
     - task: PythonScript@0
       inputs:
         scriptSource: 'filePath'
