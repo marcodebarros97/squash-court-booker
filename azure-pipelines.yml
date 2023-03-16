@@ -41,10 +41,8 @@ stages:
         export SECOND_PLAYER_LAST_NAME=$(echo $(SECOND_PLAYER_LAST_NAME))
         export BOOKING_DATE=$(echo ${{ variables.BOOKING_DATE }})
         ls -ltra
-        cd src/
-        export PYTHONPATH=$PWD
     - task: PythonScript@0
       inputs:
         scriptSource: 'filePath'
-        scriptPath: 'squash_court_booker.py'
+        scriptPath: 'src/squash_court_booker.py'
       displayName: 'Execute Python Script'
