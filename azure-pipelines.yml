@@ -11,12 +11,12 @@ pool:
   vmImage: ubuntu-latest
 
 schedules:
-  - cron: 45 11 * * *
-    displayName: ProdReleaseEveryFriday
+  - cron: 55 11 * * *
+    displayName: BookCourtEveryTuesday
     always: true
     branches:
       include:
-        - master
+        - main
 
 variables:
 - group: squash_court_booker_variables
