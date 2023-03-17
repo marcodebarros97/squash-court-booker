@@ -10,6 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from services import login_service, court_service, booking_information_service
 from utils import date_util
 from utils import time_slot_util
+
 EMPTY_STRING = ' '
 BASE_URL = str(os.getenv('BASE_URL'))
 BOOKING_DATE = str(os.getenv('BOOKING_DATE'))
@@ -27,13 +28,6 @@ options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver.get(BASE_URL)
 
-print(BASE_URL)
-print(BOOKING_DATE)
-print(FIRST_SLOT)
-print(SLOT_TIME_LIMIT)
-
-
-
 if driver.find_element(By.ID, 'login-form-container') is not None:
     print('Correct Page Retrieved, Performing Login')
     logging.info('Correct Page Retrieved, Performing Login')
@@ -42,7 +36,6 @@ if driver.find_element(By.ID, 'login-form-container') is not None:
     if login_successful:
         if BOOKING_DATE is None or BOOKING_DATE == EMPTY_STRING:
             BOOKING_DATE = date_util.add_one_week_to_date()
-            print(BOOKING_DATE)
 
         driver.get(f'https://kampongsquash.baanreserveren.nl/reservations/{BOOKING_DATE}/sport/893')
         booking_system_date = driver.find_element(By.ID, "matrix_date_title").text
