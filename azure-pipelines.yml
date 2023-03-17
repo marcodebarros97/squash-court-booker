@@ -8,7 +8,7 @@ pool:
   vmImage: ubuntu-latest
 
 schedules:
-  - cron: 0 3 * * TUE # UTC timezone (no daylight saving)
+  - cron: 15 13 * * * # UTC timezone (no daylight saving)
     displayName: BookCourtEveryTuesday
     always: true
     branches:
