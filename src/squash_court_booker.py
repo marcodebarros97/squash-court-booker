@@ -29,17 +29,15 @@ login_form_container = 'login-form-container'
 booking_system_date = 'matrix_date_title'
 
 if driver.find_element(By.ID, login_form_container) is not None:
-    date_to_book_url = f'https://kampongsquash.baanreserveren.nl/reservations/{BOOKING_DATE}/sport/893'
-
     print('Correct Page Retrieved, Performing Login')
     logging.info('Correct Page Retrieved, Performing Login')
     login_successful = login_service.perform_login(driver)
 
     if login_successful:
-        print(BOOKING_DATE)
         if BOOKING_DATE is None or BOOKING_DATE == EMPTY_STRING or BOOKING_DATE == EMPTY_SPACE:
             BOOKING_DATE = date_util.add_one_week_to_date()
 
+        date_to_book_url = f'https://kampongsquash.baanreserveren.nl/reservations/{BOOKING_DATE}/sport/893'
         driver.get(date_to_book_url)
         booking_system_date = driver.find_element(By.ID, booking_system_date).text
 
