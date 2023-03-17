@@ -11,16 +11,11 @@ from services import login_service, court_service, booking_information_service
 from utils import date_util
 from utils import time_slot_util
 
-EMPTY_STRING = ' '
+EMPTY_STRING = ''
 BASE_URL = str(os.getenv('BASE_URL'))
 BOOKING_DATE = str(os.getenv('BOOKING_DATE'))
 FIRST_SLOT = str(os.getenv('FIRST_SLOT'))
 SLOT_TIME_LIMIT = int(os.getenv('SLOT_TIME_LIMIT'))
-
-# Example of URL to use to get to specific date-
-# https://kampongsquash.baanreserveren.nl/reservations/2023-3-7/sport/893
-
-# Take a screenshot of booking and email to me but squash system will also email it
 
 options = Options()
 options.add_argument('--headless')
