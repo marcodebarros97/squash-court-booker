@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 from services import login_service, court_service, booking_information_service
+from utils import date_util
 from utils import time_slot_util
 
 BASE_URL = str(os.getenv('BASE_URL'))
@@ -37,6 +38,10 @@ if driver.find_element(By.ID, 'login-form-container') is not None:
     login_successful = login_service.perform_login(driver)
 
     if login_successful:
+        if BOOKING_DATE is None:
+            BOOKING_DATE = date_util.add_one_week_to_date()
+            print(BOOKING_DATE)
+
         driver.get(f'https://kampongsquash.baanreserveren.nl/reservations/{BOOKING_DATE}/sport/893')
         booking_system_date = driver.find_element(By.ID, "matrix_date_title").text
 
