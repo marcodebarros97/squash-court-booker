@@ -26,7 +26,7 @@ variables:
 - name: SECOND_PLAYER_LAST_NAME
   value: Du Plooy
 - name: USERNAME
-  value: $(USERNAME)
+  value: $(USERNAME_MARCO_DE_BARROS)
 - name: BOOKING_DATE
   value: ${{ parameters.BOOKING_DATE_OVERRIDE }}
 
