@@ -40,9 +40,9 @@ def book_free_squash_court(driver: WebDriver, free_squash_courts: dict, end_time
 
                 if search_box_select.first_selected_option.get_attribute('text') == player_name:
                     print("Correct Player Selected")
-                    # form.find_element(By.ID, '__make_submit').click()
-                    # # driver.save_screenshot('booking_confirmation.png')
-                    # WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, '__make_submit2'))).click()
+                    form.find_element(By.ID, '__make_submit').click()
+                    # driver.save_screenshot('booking_confirmation.png')
+                    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, '__make_submit2'))).click()
                     return free_squash_courts[key].get_attribute('title')
 
             except UnexpectedAlertPresentException:
