@@ -4,8 +4,8 @@ trigger:
 parameters:
 - name: BOOKING_DATE_OVERRIDE 
   type: string
-  displayName: 'Default: One week from today (YYYY-MM-DD)'
-  default: ${{ format(addDays(utcNow(), 7), 'yyyy-MM-dd') }}
+  displayName: 'Booking Date- Default will be 1 week from today if empty'
+  
 
 pool:
   vmImage: ubuntu-latest
