@@ -11,7 +11,7 @@ pool:
   vmImage: ubuntu-latest
 
 schedules:
-  - cron: 0 5 * * TUE 
+  - cron: 45 11 * * *
     displayName: ProdReleaseEveryFriday
     always: true
     branches:
