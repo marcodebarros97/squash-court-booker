@@ -1,7 +1,5 @@
 trigger:
 - main
-schedules:
-  - cron: "45 11 * * *"
 
 parameters:
 - name: BOOKING_DATE_OVERRIDE 
@@ -11,6 +9,14 @@ parameters:
 
 pool:
   vmImage: ubuntu-latest
+
+schedules:
+  - cron: 0 5 * * TUE 
+    displayName: ProdReleaseEveryFriday
+    always: true
+    branches:
+      include:
+        - master
 
 variables:
 - group: squash_court_booker_variables
