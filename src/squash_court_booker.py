@@ -29,6 +29,7 @@ if driver.find_element(By.ID, 'login-form-container') is not None:
     login_successful = login_service.perform_login(driver)
 
     if login_successful:
+        print(BOOKING_DATE)
         if BOOKING_DATE is None or BOOKING_DATE == EMPTY_STRING:
             BOOKING_DATE = date_util.add_one_week_to_date()
 
