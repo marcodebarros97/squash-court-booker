@@ -20,16 +20,15 @@ SLOT_TIME_LIMIT = int(os.getenv('SLOT_TIME_LIMIT'))
 
 
 options = Options()
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
+# options.add_argument('--headless')
+# options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver.get(BASE_URL)
 
 login_form_container = 'login-form-container'
-booking_system_date = 'matrix_date_title'
+page_title = 'matrix_date_title'
 
 if driver.find_element(By.ID, login_form_container) is not None:
-    date_to_book_url = f'https://kampongsquash.baanreserveren.nl/reservations/{BOOKING_DATE}/sport/893'
 
     print('Correct Page Retrieved, Performing Login')
     logging.info('Correct Page Retrieved, Performing Login')
@@ -40,8 +39,9 @@ if driver.find_element(By.ID, login_form_container) is not None:
         if BOOKING_DATE is None or BOOKING_DATE == EMPTY_STRING or BOOKING_DATE == EMPTY_SPACE:
             BOOKING_DATE = date_util.add_one_week_to_date()
 
+        date_to_book_url = f'https://kampongsquash.baanreserveren.nl/reservations/{BOOKING_DATE}/sport/893'
         driver.get(date_to_book_url)
-        booking_system_date = driver.find_element(By.ID, booking_system_date).text
+        booking_system_date = driver.find_element(By.ID, page_title).text
 
         if BOOKING_DATE in booking_system_date:
             print(f'Calendar set to day: {booking_system_date}')
