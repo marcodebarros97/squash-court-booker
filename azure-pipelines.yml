@@ -25,10 +25,10 @@ variables:
   value: Stehan
 - name: SECOND_PLAYER_LAST_NAME
   value: Du Plooy
-- name: USERNAME_M
-  value: $(USERNAME)
+- name: USERNAME
+  value: $[variables.USERNAME]
 - name: BOOKING_DATE
-  value: $(BOOKING_DATE_OVERRIDE)
+  value: ${{ parameters.BOOKING_DATE_OVERRIDE }}
 
 stages:
 - stage: Key_Vault
@@ -54,7 +54,7 @@ stages:
         scriptSource: 'filePath'
         scriptPath: 'src/squash_court_booker.py'
       env: 
-        USERNAME: $(USERNAME_M)
+        USERNAME: $(USERNAME)
         PASSWORD: $(KampongPasswordMarco)
         BASE_URL: $(BASE_URL)
         FIRST_SLOT: $(FIRST_SLOT)
