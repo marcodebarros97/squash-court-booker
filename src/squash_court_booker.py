@@ -12,7 +12,7 @@ from utils import date_util
 from utils import time_slot_util
 
 EMPTY_STRING = ''
-EMPTY_SPACE = ''
+EMPTY_SPACE = ' '
 BASE_URL = str(os.getenv('BASE_URL'))
 BOOKING_DATE = str(os.getenv('BOOKING_DATE'))
 FIRST_SLOT = str(os.getenv('FIRST_SLOT'))
