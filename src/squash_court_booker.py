@@ -12,6 +12,7 @@ from utils import date_util
 from utils import time_slot_util
 
 EMPTY_STRING = ''
+EMPTY_SPACE = ''
 BASE_URL = str(os.getenv('BASE_URL'))
 BOOKING_DATE = str(os.getenv('BOOKING_DATE'))
 FIRST_SLOT = str(os.getenv('FIRST_SLOT'))
@@ -30,7 +31,7 @@ if driver.find_element(By.ID, 'login-form-container') is not None:
 
     if login_successful:
         print(BOOKING_DATE)
-        if BOOKING_DATE is None or BOOKING_DATE == EMPTY_STRING:
+        if BOOKING_DATE is None or BOOKING_DATE == EMPTY_STRING or BOOKING_DATE == EMPTY_SPACE:
             BOOKING_DATE = date_util.add_one_week_to_date()
 
         driver.get(f'https://kampongsquash.baanreserveren.nl/reservations/{BOOKING_DATE}/sport/893')
