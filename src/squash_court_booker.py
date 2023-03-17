@@ -10,7 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from services import login_service, court_service, booking_information_service
 from utils import date_util
 from utils import time_slot_util
-
+EMPTY_STRING = ' '
 BASE_URL = str(os.getenv('BASE_URL'))
 BOOKING_DATE = str(os.getenv('BOOKING_DATE'))
 FIRST_SLOT = str(os.getenv('FIRST_SLOT'))
@@ -32,13 +32,15 @@ print(BOOKING_DATE)
 print(FIRST_SLOT)
 print(SLOT_TIME_LIMIT)
 
+
+
 if driver.find_element(By.ID, 'login-form-container') is not None:
     print('Correct Page Retrieved, Performing Login')
     logging.info('Correct Page Retrieved, Performing Login')
     login_successful = login_service.perform_login(driver)
 
     if login_successful:
-        if BOOKING_DATE is None:
+        if BOOKING_DATE is None or BOOKING_DATE == EMPTY_STRING:
             BOOKING_DATE = date_util.add_one_week_to_date()
             print(BOOKING_DATE)
 
