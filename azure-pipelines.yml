@@ -1,5 +1,7 @@
 trigger:
 - main
+schedules:
+  - cron: "45 11 * * *"
 
 parameters:
 - name: BOOKING_DATE_OVERRIDE 
