@@ -26,8 +26,12 @@ options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver.get(BASE_URL)
 
+print(BASE_URL)
+print(BOOKING_DATE)
+print(FIRST_SLOT)
+print(SLOT_TIME_LIMIT)
+
 if driver.find_element(By.ID, 'login-form-container') is not None:
-    print(BOOKING_DATE)
     print('Correct Page Retrieved, Performing Login')
     logging.info('Correct Page Retrieved, Performing Login')
     login_successful = login_service.perform_login(driver)

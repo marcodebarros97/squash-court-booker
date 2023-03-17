@@ -16,6 +16,7 @@ PASSWORD = str(os.getenv('PASSWORD'))
 
 
 def perform_login(driver: WebDriver):
+    print(USERNAME)
     print(PASSWORD)
     username_input_field = driver.find_element(By.NAME, 'username')
     password_input_field = driver.find_element(By.NAME, 'password')
